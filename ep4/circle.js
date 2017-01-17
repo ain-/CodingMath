@@ -8,21 +8,24 @@ window.onload = function () {
         centerX = width / 2,
         xRadius = 200,
         yRadius = 400,        
-        angle = 0,
-        speed = .01,
+        xangle = 0,
+        yangle = 0,
+        xspeed = .1,
+        yspeed = .131,
         x, y;
 
     render();
 
     function render() {
         context.clearRect(0, 0, width, height);
-        x = centerX + Math.cos(angle) * xRadius;
-        y = centerY + Math.sin(angle) * yRadius;
+        x = centerX + Math.cos(xangle) * xRadius;
+        y = centerY + Math.sin(yangle) * yRadius;
         context.beginPath();
         context.arc(x, y, 10, 0, Math.PI * 2, false);
         context.fill();
 
-        angle += speed;
+        xangle += xspeed;
+        yangle += yspeed;        
         requestAnimationFrame(render);
     }
 
