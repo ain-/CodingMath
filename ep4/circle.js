@@ -6,27 +6,19 @@ window.onload = function () {
     
     var centerY = height / 2,
         centerX = width / 2,
-        xRadius = 200,
-        yRadius = 400,        
-        xangle = 0,
-        yangle = 0,
-        xspeed = .1,
-        yspeed = .131,
+        radius = 200,    
+        angle = 0,
+        numObjects = 10,
+        slice = Math.PI * 2 / numObjects,
         x, y;
 
-    render();
-
-    function render() {
-        context.clearRect(0, 0, width, height);
-        x = centerX + Math.cos(xangle) * xRadius;
-        y = centerY + Math.sin(yangle) * yRadius;
+    for (var i = 0; i < numObjects; i += 1) {
+        angle = i * slice;
+        x = centerX + Math.cos(angle) * radius;
+        y = centerY + Math.sin(angle) * radius;
         context.beginPath();
         context.arc(x, y, 10, 0, Math.PI * 2, false);
         context.fill();
-
-        xangle += xspeed;
-        yangle += yspeed;        
-        requestAnimationFrame(render);
     }
 
 };
