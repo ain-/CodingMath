@@ -56,6 +56,19 @@ window.onload = function() {
         context.arc(ship.position.getX(), ship.position.getY(),  10, 0, Math.PI * 2, false);
         context.fill();
 
+        if (ship.position.getX() > width) {
+            ship.position.setX(0);
+        }
+        if (ship.position.getX() < 0) {
+            ship.position.setX(width);
+        }
+        if (ship.position.getY() > height) {
+            ship.position.setY(0);
+        }
+        if (ship.position.getY() < 0) {
+            ship.position.setY(height);
+        }
+
         requestAnimationFrame(update);
     }
 
