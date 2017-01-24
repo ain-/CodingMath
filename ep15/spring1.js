@@ -11,6 +11,11 @@ window.onload = function() {
     weight.radius = 20;
     weight.friction = 0.9;
 
+    document.body.addEventListener("mousemove", function(event) {
+        springPoint.setX(event.clientX);
+        springPoint.setY(event.clientY);
+    });
+
     update();
 
     function update() {
