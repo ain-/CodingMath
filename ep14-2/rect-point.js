@@ -6,8 +6,8 @@ window.onload = function() {
         rect = {
             x: 300,
             y: 200,
-            width: 200,
-            height: 100
+            width: -200,
+            height: -100
         };
 
     document.body.addEventListener("mousemove", function(event) {

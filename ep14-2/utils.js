@@ -12,7 +12,7 @@ var utils = {
     },
 
     clamp: function(value, min, max) {
-        return Math.min(Math.max(value, min), max);
+        return Math.min(Math.max(value, Math.min(min, max)), Math.max(max, min));
     },
 
     distance: function(p0, p1) {
@@ -41,6 +41,6 @@ var utils = {
     },
 
     inRange: function(value, min, max) {
-        return value >= min && value <= max;
+        return value >= Math.min(min, max) && value <= Math.max(min, max);
     }
 }
