@@ -8,6 +8,7 @@ window.onload = function() {
         k = 0.1;
 
     weight.radius = 20;
+    weight.friction = 0.9;
 
     update();
 
