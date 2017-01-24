@@ -29,5 +29,9 @@ var utils = {
 
     circleCollision: function(c0, c1) {
         return utils.distance(c0, c1) <= c0.radius + c1.radius;
+    },
+
+    circlePointCollision: function(x, y, circle) {
+        return utils.distanceXY(x, y, circle.x, circle.y) < circle.radius;
     }
 }
