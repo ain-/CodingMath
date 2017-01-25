@@ -11,6 +11,10 @@ window.onload = function() {
                                     utils.randomRange(0, height),
                                     utils.randomRange(0, 50),
                                     utils.randomRange(0, Math.PI * 2)),
+        particleC = particle.create(utils.randomRange(0, width),
+                                    utils.randomRange(0, height),
+                                    utils.randomRange(0, 50),
+                                    utils.randomRange(0, Math.PI * 2)),
         k = 0.01,
         separation = 100;
 
@@ -20,15 +24,21 @@ window.onload = function() {
     particleB.friction = 0.9;
     particleB.radius = 20; 
 
+    particleC.friction = 0.9;
+    particleC.radius = 20; 
+
     update();
 
     function update() {
         context.clearRect(0, 0, width, height);
 
         spring(particleA, particleB, separation);
+        spring(particleB, particleC, separation);
+        spring(particleC, particleA, separation);
 
         particleA.update();
         particleB.update();
+        particleC.update();
 
         context.beginPath();
         context.arc(particleA.position.getX(), particleA.position.getY(),
@@ -41,8 +51,15 @@ window.onload = function() {
         context.fill();
 
         context.beginPath();
+        context.arc(particleC.position.getX(), particleC.position.getY(),
+                    particleC.radius, 0, Math.PI * 2, false);
+        context.fill();
+
+        context.beginPath();
         context.moveTo(particleA.position.getX(), particleA.position.getY());
         context.lineTo(particleB.position.getX(), particleB.position.getY());
+        context.lineTo(particleC.position.getX(), particleC.position.getY());
+        context.lineTo(particleA.position.getX(), particleA.position.getY());
         context.stroke();
 
         requestAnimationFrame(update);
