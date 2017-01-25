@@ -5,7 +5,7 @@ window.onload = function() {
         height = canvas.height = window.innerHeight,
         springPoint = vector.create(width / 2, height / 2),
         weight = particle.create(Math.random() * width, Math.random() * height, 
-                                50, Math.random() * Math.PI *2),
+                                50, Math.random() * Math.PI *2, 0.5),
         k = 0.1,
         springLength = 100;
 
