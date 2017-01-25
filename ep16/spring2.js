@@ -25,6 +25,8 @@ window.onload = function() {
     function update() {
         context.clearRect(0, 0, width, height);
 
+        spring(particleA, particleB, separation);
+
         particleA.update();
         particleB.update();
 
@@ -44,6 +46,16 @@ window.onload = function() {
         context.stroke();
 
         requestAnimationFrame(update);
+    }
+
+    function spring(p0, p1, separation) {
+        var distance = p0.position.subtract(p1.position);
+        distance.setLength(distance.getLength() - separation);
+
+        var springForce = distance.multiply(k);
+
+        p1.velocity.addTo(springForce);
+        p0.velocity.subtractFrom(springForce);
     }
 
 };
