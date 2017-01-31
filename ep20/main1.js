@@ -14,23 +14,28 @@ window.onload = function() {
         p2 = {
             x: utils.randomRange(0, width),
             y: utils.randomRange(0, height)
-        };
+        },
+        cp = {};
+
+    cp.x = p1.x * 2 - (p0.x + p2.x) / 2;
+    cp.y = p1.y * 2 - (p0.y + p2.y) / 2;
 
     drawPoint(p0);
     drawPoint(p1);
     drawPoint(p2);
+    drawPoint(cp);
     
     context.strokeStyle = "lightgray";
     context.beginPath();
     context.moveTo(p0.x, p0.y);
-    context.lineTo(p1.x, p1.y);
+    context.lineTo(cp.x, cp.y);
     context.lineTo(p2.x, p2.y);
     context.stroke();
 
     context.strokeStyle = "black";
     context.beginPath();
     context.moveTo(p0.x, p0.y);
-    context.quadraticCurveTo(p1.x, p1.y, p2.x, p2.y);
+    context.quadraticCurveTo(cp.x, cp.y, p2.x, p2.y);
     context.stroke();
 
     function drawPoint(p) {
