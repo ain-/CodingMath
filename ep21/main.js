@@ -11,6 +11,37 @@ window.onload = function() {
     targetContext.arc(width / 2, height / 2, 200, 0, Math.PI * 2, false);
     targetContext.fill();
 
+    update();
+
+    function update() {
+        context.clearRect(0, 0, width, height);
+
+        p.update();
+        context.beginPath();
+        context.arc(p.x, p.y, 4, 0, Math.PI * 2, false);
+        context.fill();
+
+        var imageData = targetContext.getImageData(p.x, p.y, 1, 1);
+        if (imageData[3] > 0) {
+            targetContext.globalCompositeOperation = "destination-out";
+            targetContext.beginPath();
+            targetContext.arc(p.x, p.y, 20, 0, Math.PI * 2, false);
+            targetContext.fill();
+
+            resetParticle();
+        }
+        else if (p.x > width) {
+            resetParticle();
+        }
+        requestAnimationFrame(update);
+    }
+
+    function resetParticle() {
+        p.x = 0;
+        p.y = height / 2;
+        p.setHeading(utils.randomRange(-0.1, 0.1));
+    }
+
 };
 
 
