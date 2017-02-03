@@ -4,7 +4,7 @@ window.onload = function() {
         targetCanvas = document.getElementById("target"),
         targetContext = targetCanvas.getContext("2d"),
         width = canvas.width = targetCanvas.width = window.innerWidth,
-        height = canvas.height = targetCanvas.width = window.innerHeight,
+        height = canvas.height = targetCanvas.height = window.innerHeight,
         p = particle.create(0, height / 2, 10, 0);
 
     targetContext.beginPath();
