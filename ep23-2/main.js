@@ -28,6 +28,10 @@ window.onload = function() {
 
     context.translate(width / 2, height / 2);
 
+    document.body.addEventListener("mousemove", function(event) {
+        rotationSpeed = (event.clientX - width / 2) * 0.00005;
+    });
+
     update();
 
     function update() {
