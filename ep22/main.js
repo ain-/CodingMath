@@ -27,8 +27,8 @@ window.onload = function() {
                 perspective = fl / (fl + shape.z);
             
             context.save();
-            context.translate(shape.x * perspective, shape.y * perspective);
             context.scale(perspective, perspective);
+            context.translate(shape.x, shape.y);
             context.fillRect(-100, -100, 200, 200);
             context.restore();
 
