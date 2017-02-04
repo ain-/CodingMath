@@ -47,6 +47,9 @@ window.onload = function() {
             context.scale(perspective, perspective);
             context.translate(point.x, point.y);
             context.fillStyle = point.color;
+
+            context.scale(Math.sin(point.angle + baseAngle), 1);
+
             context.beginPath();
             context.arc(0, 0, 40, 0, Math.PI * 2, false);
             context.fill();
