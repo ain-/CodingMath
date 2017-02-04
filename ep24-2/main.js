@@ -16,7 +16,7 @@ window.onload = function() {
         var point = {
             y: 0,
             angle: 0.2 * i,
-            y: 2000 - 4000 / numPoints * i
+            y: 2000 - 4000 / numPoints * i + Math.random() * 500
         };
         point.x = Math.cos(point.angle + baseAngle) * radius;
         point.z = centerZ + Math.sin(point.angle + baseAngle) * radius;
