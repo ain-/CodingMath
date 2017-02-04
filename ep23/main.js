@@ -13,9 +13,9 @@ window.onload = function() {
             x: utils.randomRange(-1000, 1000),
             y: utils.randomRange(-1000, 1000),
             z: utils.randomRange(0, 10000),
-            color: '#' + utils.randomRange(10, 99).toString().slice(-2) + 
-                utils.randomRange(10, 99).toString().slice(-2) +
-                utils.randomRange(10, 99).toString().slice(-2)
+            color: '#' + utils.randomRange(10, 99).toString().slice(0, 2) + 
+                utils.randomRange(10, 99).toString().slice(0, 2) +
+                utils.randomRange(10, 99).toString().slice(0, 2)
         };
     }
 
