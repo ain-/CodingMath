@@ -16,10 +16,7 @@ window.onload = function() {
         var point = {
             y: 0,
             angle: 0.2 * i,
-            y: 2000 - 4000 / numPoints * i,
-            color: '#' + utils.randomRange(10, 99).toString().slice(0, 2) + 
-                utils.randomRange(10, 99).toString().slice(0, 2) +
-                utils.randomRange(10, 99).toString().slice(0, 2)
+            y: 2000 - 4000 / numPoints * i
         };
         point.x = Math.cos(point.angle + baseAngle) * radius;
         point.z = centerZ + Math.sin(point.angle + baseAngle) * radius;
@@ -37,7 +34,6 @@ window.onload = function() {
 
     function update() {
         baseAngle += rotationSpeed;
-        points.sort(zsort);
         context.clearRect(-width / 2, -height / 2, width, height);
 
         context.beginPath();
@@ -48,7 +44,6 @@ window.onload = function() {
             context.save();
             context.scale(perspective, perspective);
             context.translate(point.x, point.y);
-            context.fillStyle = point.color;
 
             if (i == 0) {
                 context.moveTo(0, 0);
@@ -66,14 +61,6 @@ window.onload = function() {
         requestAnimationFrame(update);
 
     }
-
-    function zsort(cardA, cardB) {
-        return cardB.z - cardA.z;
-    }
-
-
-   
-
 };
 
 
