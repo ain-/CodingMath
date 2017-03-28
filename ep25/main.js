@@ -4,7 +4,8 @@ window.onload = function() {
       width = canvas.width = window.innerWidth,
       height = canvas.height = window.innerHeight,
       fl = 300,
-      points = [];
+      points = [],
+      needsUpdate = true;
 
   context.translate(width / 2, height / 2);
 
@@ -42,6 +43,7 @@ window.onload = function() {
       points[i].y += y;
       points[i].z += z;
     }
+    needsUpdate = true;
   }
 
   document.body.addEventListener("keydown", function(event) {
@@ -74,17 +76,20 @@ window.onload = function() {
   update();
 
   function update() {
-    context.clearRect(-width / 2, -height / 2, width, height);
-    project();
+    if (needsUpdate) {
+      context.clearRect(-width / 2, -height / 2, width, height);
+      project();
 
-    context.beginPath();
-    drawLine(0, 1, 2, 3, 0);
-    drawLine(4, 5, 6, 7, 4);
-    drawLine(0, 4);
-    drawLine(1, 5);
-    drawLine(2, 6);
-    drawLine(3, 7);
-    context.stroke();
+      context.beginPath();
+      drawLine(0, 1, 2, 3, 0);
+      drawLine(4, 5, 6, 7, 4);
+      drawLine(0, 4);
+      drawLine(1, 5);
+      drawLine(2, 6);
+      drawLine(3, 7);
+      context.stroke();
+      needsUpdate = false;
+    }
 
     requestAnimationFrame(update);
   }
