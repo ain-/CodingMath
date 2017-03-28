@@ -36,6 +36,41 @@ window.onload = function() {
     }
   }
 
+  function translateModel(x, y, z) {
+    for (var i = 0; i < points.length; i++) {
+      points[i].x += x;
+      points[i].y += y;
+      points[i].z += z;
+    }
+  }
+
+  document.body.addEventListener("keydown", function(event) {
+    switch(event.keyCode) {
+      case 37: // left
+        translateModel(-20, 0, 0);
+        break;
+      case 39: // right
+        translateModel(20, 0, 0);
+        break;
+      case 38: // up
+        if (event.shiftKey) {
+          translateModel(0, 0, 20);
+        }
+        else {
+          translateModel(0, -20, 0);
+        }
+        break;
+      case 40: // down
+        if (event.shiftKey) {
+          translateModel(0, 0, -20);
+        }
+        else {
+          translateModel(0, 20, 0);
+        }
+        break;
+    }
+  });
+
   update();
 
   function update() {
