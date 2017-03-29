@@ -22,7 +22,7 @@ var particle = {
         return obj;
     },
 
-    
+
     addGravitation: function(p) {
         this.removeGravitation(p);
         this.gravitations.push(p);
