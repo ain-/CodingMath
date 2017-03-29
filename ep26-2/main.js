@@ -5,23 +5,24 @@ window.onload = function() {
       height = canvas.height = window.innerHeight,
       fl = 300,
       points = [],
-      needsUpdate = true;
+      needsUpdate = true,
+      centerZ = 1500;
 
   context.translate(width / 2, height / 2);
 
-  points[0] = {x: -500, y: -500, z: 1000 };
-  points[1] = {x: 500, y: -500, z: 1000 };
-  points[2] = {x: 500, y: -500, z: 500 };
-  points[3] = {x: -500, y: -500, z: 500 };
-  points[4] = {x: -500, y: 500, z: 1000 };
-  points[5] = {x: 500, y: 500, z: 1000 };
-  points[6] = {x: 500, y: 500, z: 500 };
-  points[7] = {x: -500, y: 500, z: 500 };
+  points[0] = {x: -500, y: -500, z: 500 };
+  points[1] = {x: 500, y: -500, z: 500 };
+  points[2] = {x: 500, y: -500, z: -500 };
+  points[3] = {x: -500, y: -500, z: -500 };
+  points[4] = {x: -500, y: 500, z: 500 };
+  points[5] = {x: 500, y: 500, z: 500 };
+  points[6] = {x: 500, y: 500, z: -500 };
+  points[7] = {x: -500, y: 500, z: -500 };
 
   function project() {
     for(var i = 0; i < points.length; i++) {
       var p = points[i],
-        scale = fl / (fl + p.z);
+        scale = fl / (fl + p.z + centerZ);
       p.sx = p.x * scale;
       p.sy = p.y * scale;
     }
