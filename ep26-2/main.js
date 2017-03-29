@@ -127,6 +127,12 @@ window.onload = function() {
           translateModel(0, 20, 0);
         }
         break;
+      case 87: //w
+        rotateZ(0.05);
+        break;
+      case 83: //s
+        rotateZ(-0.05);
+        break;
     }
   });
 
