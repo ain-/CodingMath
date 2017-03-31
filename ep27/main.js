@@ -15,7 +15,7 @@ window.onload = function() {
 
   update();
 
-  document.body.addEventListener("click", function(event) {
+  document.body.addEventListener("mousemove", function(event) {
     target.x = event.clientX;
     target.y = event.clientY;
   });
