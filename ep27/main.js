@@ -15,6 +15,11 @@ window.onload = function() {
 
   update();
 
+  document.body.addEventListener("click", function(event) {
+    target.x = event.clientX;
+    target.y = event.clientY;
+  });
+
   function update() {
     context.clearRect(0, 0, width, height);
 
