@@ -4,6 +4,8 @@ window.onload = function() {
     width = canvas.width = window.innerWidth,
     height = canvas.height = window.innerHeight,
     angle = 0,
+    targetAngle = 0,
+    ease = 0.05,
     wheel;
 
   wheel = document.createElement("img");
@@ -14,6 +16,8 @@ window.onload = function() {
 
   function render() {
     context.clearRect(0, 0, width, height);
+
+    angle += (targetAngle - angle) * ease;
 
     context.save();
     context.translate(width / 2, height / 2);
@@ -26,7 +30,7 @@ window.onload = function() {
   }
 
   document.body.addEventListener("mousemove", function(event) {
-    angle = utils.map(event.clientX, 0, width, -Math.PI, Math.PI);
+    targetAngle = utils.map(event.clientX, 0, width, -Math.PI, Math.PI);
   });
 
 };
