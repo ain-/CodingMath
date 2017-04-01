@@ -11,13 +11,18 @@ window.onload = function() {
       x: 0,
       y: Math.random() * height
     },
-    ease = 0.05;
+    ease = 0.05,
+    easing = true;
 
   update();
 
-  document.body.addEventListener("mousemove", function(event) {
+  document.body.addEventListener("click", function(event) {
     target.x = event.clientX;
     target.y = event.clientY;
+    if (!easing) {
+      easing = true;
+      update();
+    }
   });
 
   function update() {
@@ -27,10 +32,23 @@ window.onload = function() {
     context.arc(position.x, position.y, 10, 0, Math.PI * 2, false);
     context.fill();
 
-    position.x += (target.x - position.x) * ease;
-    position.y += (target.y - position.y) * ease;
+    easing = easeTo(position, target, ease);
+    if (easing) {
+      requestAnimationFrame(update);
+    }
+  }
 
-    requestAnimationFrame(update);
+  function easeTo(position, target, ease) {
+    var dx = target.x - position.x,
+      dy = target.y - position.y;
+    position.x += dx * ease;
+    position.y += dy * ease;
+    if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
+      position.x = target.x;
+      position.y = target.y;
+      return false;
+    }
+    return true;
   }
 
 };
