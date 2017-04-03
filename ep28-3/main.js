@@ -9,8 +9,8 @@ window.onload = function() {
     },
 
     points = [],
-    numPoints = 10,
-    ease = 0.1;
+    numPoints = 100,
+    ease = 0.5;
 
   for (var i = 0; i < numPoints; i++) {
     points.push({
