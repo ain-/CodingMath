@@ -28,8 +28,8 @@ window.onload = function() {
 
     var time = new Date() - startTime;
     if (time < duration) {
-      var x = easeInQuad(time, start.x, change.x, duration),
-        y = easeInQuad(time, start.y, change.y, duration);
+      var x = easeOutQuad(time, start.x, change.x, duration),
+        y = easeOutQuad(time, start.y, change.y, duration);
       drawCircle(x, y);
       requestAnimationFrame(update);
     } else {
@@ -52,7 +52,7 @@ window.onload = function() {
   };
 
   function easeOutQuad(t, b, c, d) {
-    return -c *(t/d)*(t-2) + b;
+    return -c *(t/=d)*(t-2) + b;
   };
 
   function easeInOutQuad(t, b, c, d) {
