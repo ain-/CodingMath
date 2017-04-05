@@ -28,8 +28,8 @@ window.onload = function() {
 
     var time = new Date() - startTime;
     if (time < duration) {
-      var x = linearTween(time, start.x, change.x, duration),
-        y = linearTween(time, start.y, change.y, duration);
+      var x = easeInQuad(time, start.x, change.x, duration),
+        y = easeInQuad(time, start.y, change.y, duration);
       drawCircle(x, y);
       requestAnimationFrame(update);
     } else {
@@ -45,6 +45,20 @@ window.onload = function() {
   function linearTween(t, b, c, d) {
     return c * t / d + b;
   }
+
+  //t and d can be in frames or (m)seconds ?
+  function easeInQuad(t, b, c, d) {
+    return c*(t/=d)*t + b;
+  };
+
+  function easeOutQuad(t, b, c, d) {
+    return -c *(t/d)*(t-2) + b;
+  };
+
+  function easeInOutQuad(t, b, c, d) {
+    if ((t/=d/2) < 1) return c/2*t*t + b;
+    return -c/2 * ((--t)*(t-2) - 1) + b;
+  };
 
   function drawCircle(x, y) {
     context.beginPath();
