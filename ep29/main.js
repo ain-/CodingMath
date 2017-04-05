@@ -28,8 +28,8 @@ window.onload = function() {
 
     var time = new Date() - startTime;
     if (time < duration) {
-      var x = easeOutQuad(time, start.x, change.x, duration),
-        y = easeOutQuad(time, start.y, change.y, duration);
+      var x = easeInOutQuad(time, start.x, change.x, duration),
+        y = easeInOutQuad(time, start.y, change.y, duration);
       drawCircle(x, y);
       requestAnimationFrame(update);
     } else {
