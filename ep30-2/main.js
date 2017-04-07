@@ -5,10 +5,11 @@ window.onload = function() {
     height = canvas.height = window.innerHeight,
     ball = {
       x: 100,
-      y: 100
+      y: 100,
+      alpha: 1
     };
 
-  tween(ball, "x", 800, 1000, easeInQuad);
+  tween(ball, "alpha", 0, 1000, easeInQuad);
 
   function tween(obj, prop, target, duration, easingFunc) {
     var start = obj[prop],
@@ -32,6 +33,7 @@ window.onload = function() {
 
   function render() {
     context.clearRect(0, 0, width, height);
+    context.globalAlpha = ball.alpha;
     context.beginPath();
     context.arc(ball.x, ball.y, 20, 0, Math.PI * 2, false);
     context.fill();
