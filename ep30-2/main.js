@@ -9,9 +9,9 @@ window.onload = function() {
       alpha: 1
     };
 
-  tween(ball, {x: 900, y: 700, alpha: 0}, 1000, easeInQuad);
+  tween(ball, {x: 900, y: 700, alpha: 0}, 1000, easeInOutQuad, render, render);
 
-  function tween(obj, props, duration, easingFunc) {
+  function tween(obj, props, duration, easingFunc, onProgress, onComplete) {
     var starts = {},
       changes = {},
       startTime = new Date();
@@ -29,6 +29,7 @@ window.onload = function() {
         for (var prop in props) {
           obj[prop] = easingFunc(time, starts[prop], changes[prop], duration);
         }
+        onProgress();
         requestAnimationFrame(update);
       }
       else {
@@ -36,8 +37,8 @@ window.onload = function() {
         for (var prop in props) {
           obj[prop] = easingFunc(time, starts[prop], changes[prop], duration);
         }
+        onComplete();
       }
-      render();
     }
   }
 
