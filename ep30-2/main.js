@@ -9,23 +9,33 @@ window.onload = function() {
       alpha: 1
     };
 
-  tween(ball, "alpha", 0, 1000, easeInQuad);
+  tween(ball, {x: 900, y: 700, alpha: 0}, 1000, easeInQuad);
 
-  function tween(obj, prop, target, duration, easingFunc) {
-    var start = obj[prop],
-      change = target - start,
+  function tween(obj, props, duration, easingFunc) {
+    var starts = {},
+      changes = {},
       startTime = new Date();
+
+    for(var prop in props) {
+      starts[prop] = obj[prop];
+      changes[prop] = props[prop] - starts[prop];
+    }
+
     update();
 
     function update() {
       var time = new Date() - startTime;
       if (time < duration) {
-        obj[prop] = easingFunc(time, start, change, duration);
+        for (var prop in props) {
+          obj[prop] = easingFunc(time, starts[prop], changes[prop], duration);
+        }
         requestAnimationFrame(update);
       }
       else {
         time = duration;
-        obj[prop] = easingFunc(time, start, change, duration);
+        for (var prop in props) {
+          obj[prop] = easingFunc(time, starts[prop], changes[prop], duration);
+        }
       }
       render();
     }
