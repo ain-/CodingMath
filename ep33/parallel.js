@@ -44,6 +44,8 @@ window.onload = function() {
       C2 = A2 * p2.x + B2 * p2.y,
       denominator = A1 * B2 - A2 * B1;
 
+    console.log("denominator: " + denominator);
+
     return {
       x: (B2*C1 - B1*C2) / denominator,
       y: (A1 * C2 - A2 * C1) / denominator
