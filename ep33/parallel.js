@@ -29,11 +29,11 @@ window.onload = function() {
   context.stroke();
 
   var intersect = lineIntersect(p0, p1, p2, p3);
-  console.log(intersect.x, intersect.y);
-
-  context.beginPath();
-  context.arc(intersect.x, intersect.y, 20, 0, Math.PI * 2, false);
-  context.stroke();
+  if (intersect) {
+    context.beginPath();
+    context.arc(intersect.x, intersect.y, 20, 0, Math.PI * 2, false);
+    context.stroke();
+  }
 
   function lineIntersect(p0, p1, p2, p3) {
     var A1 = p1.y - p0.y,
@@ -44,7 +44,9 @@ window.onload = function() {
       C2 = A2 * p2.x + B2 * p2.y,
       denominator = A1 * B2 - A2 * B1;
 
-    console.log("denominator: " + denominator);
+    if (denominator == 0) {
+      return null;
+    }
 
     return {
       x: (B2*C1 - B1*C2) / denominator,
